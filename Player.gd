@@ -44,10 +44,7 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed;
 	
-	print(0.5 * delta)
-	print(scaleUpTime * 0.5)
 	health = health - 0.5 * delta - scaleUpTime * 0.5;
-	print(health)
 
 	position += velocity * delta;
 

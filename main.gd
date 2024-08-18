@@ -16,6 +16,7 @@ func _process(delta):
 		instance.position.y = randi() % 1000;
 		instance.scale.x = 1;
 		instance.scale.y = 1;
+		instance.get_node('AnimatedSprite2D').play();
 		add_child(instance);
 		foodCount += 1;
 	
