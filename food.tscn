@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bffld2x6g3wgf"]
+[gd_scene load_steps=5 format=3 uid="uid://bffld2x6g3wgf"]
 
+[ext_resource type="Script" path="res://food.gd" id="1_5ub5f"]
 [ext_resource type="Texture2D" uid="uid://cqe1o44gdrlev" path="res://assets/Cell.png" id="1_785c4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2rc7e"]
@@ -17,6 +18,7 @@ animations = [{
 radius = 25.0
 
 [node name="Food" type="Area2D"]
+script = ExtResource("1_5ub5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2rc7e")

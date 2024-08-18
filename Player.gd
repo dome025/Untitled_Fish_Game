@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Player;
+
 @export var speed = 400; # How fast the player will move (pixels/sec).
 @export var health = 100;
 var baseScale = 1;
@@ -14,6 +16,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if health <= 0:
+		return;
 	var velocity = Vector2.ZERO; # The player's movement vector.
 
 	if Input.is_action_pressed("move_right"):
@@ -27,8 +31,7 @@ func _process(delta):
 
 	if Input.is_action_pressed("scale_up"):
 		scale.x += scaleUp * 0.5 * scaleUpTime;
-		scale.y += scaleUp * 0.5 * scaleUpTime;
-		health -= 1;
+		scale.y += scaleUp * 0.5 * scaleUpTime;	
 		scaleUpTime += delta;
 	else:
 		if scale.x > baseScale:
@@ -40,5 +43,16 @@ func _process(delta):
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed;
+	
+	print(0.5 * delta)
+	print(scaleUpTime * 0.5)
+	health = health - 0.5 * delta - scaleUpTime * 0.5;
+	print(health)
 
 	position += velocity * delta;
+
+
+func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	if area is Food:
+		health += 5;
+		area.queue_free();
